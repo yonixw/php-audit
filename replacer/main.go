@@ -24,9 +24,20 @@ type Config struct {
 
 func main() {
 	loadYaml()
+	/*
+		fmt.Printf("File size limit: %d\n", config.MegaByteLimit)
+		for i := 0; i < len(config.ReplaceTasks); i++ {
+			// print the configuration
+			var task = config.ReplaceTasks[i]
+			fmt.Printf("Path Regex: %s\n", task.PathRegex)
+			fmt.Printf("After: %s\n", task.AddAfter)
+			fmt.Printf("Remove: %b\n", task.Remove)
+
+		}
+	*/
 }
 
-func loadYaml() {
+func loadYaml() Config {
 	data, err := ioutil.ReadFile("config.yaml")
 	if err != nil {
 		log.Fatalf("failed to read YAML file: %v", err)
@@ -38,15 +49,7 @@ func loadYaml() {
 		log.Fatalf("failed to unmarshal YAML data: %v", err)
 	}
 
-	fmt.Printf("File size limit: %d\n", config.MegaByteLimit)
-	for i := 0; i < len(config.ReplaceTasks); i++ {
-		// print the configuration
-		var task = config.ReplaceTasks[i]
-		fmt.Printf("Path Regex: %s\n", task.PathRegex)
-		fmt.Printf("After: %s\n", task.AddAfter)
-		fmt.Printf("Remove: %b\n", task.Remove)
-
-	}
+	return config
 }
 
 func icontain(search string, src string) bool {
