@@ -1,0 +1,10 @@
+mb_limit: 5
+replaces:
+  - path: "*.php"
+    search: Text[0-9]+
+    after: XYZ
+    before: A1B1
+    remove: false
+  - path: "*.php"
+    search: Text[0-9]+
+    remove: false
